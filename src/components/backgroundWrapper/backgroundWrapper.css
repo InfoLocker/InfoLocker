@@ -1,0 +1,24 @@
+.container {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;
+    height: 120vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: #E3E9FF;
+}
+/* .bg-red {
+    background-image: url(../../assets/bg-red.png);
+}
+
+.bg-blue{
+    background-image: url(../../assets/bg-blue.png);
+} */
