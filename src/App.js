@@ -6,8 +6,6 @@ import './App.css';
 import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import { useSelector } from 'react-redux';
-
-import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@mui/material';
 import HomePage from "./components/homepage/HomePage";
 import DataForm from "./components/dataForm/DataForm";
