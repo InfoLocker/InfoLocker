@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar'
-import { Box, Container, Grid, TextField } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import Header from './Header'
 import DataComponent from './DataComponent';
-import {dummyData} from "../../utils/data"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteData, getUserData } from '../../asyncFunctions';
 import AlertComponent from '../alert/AlertComponent';
 import { alertSliceActions } from '../../store/alertSlice';
@@ -15,10 +14,8 @@ function HomePage() {
   const [isLoading,setIsLoading]=useState(false)
   const dispatch=useDispatch()
 const [detailsData,setDetailsData]=useState([])
-// const [open,setOpen]=useState(false)
 const [linksData,setLinksData]=useState([])
 const [filesData,setFilesData]=useState([])
-  // const alertData=useSelector((state)=>state.alertData)
   const userId=localStorage.getItem("userId")
 
   const getData=async()=>{
@@ -48,7 +45,6 @@ const [filesData,setFilesData]=useState([])
             <Header type="details"/>
             <Grid container spacing={2} sx={{marginTop:3}}>
               {detailsData.length>0 ?detailsData.map((dataa)=>{
-                console.log(dataa)
                     return(
                     <DataComponent label={dataa.label} value={dataa.value} type="details" docId={dataa.docId} handleDelete={handleDelete}/>
                    ); }

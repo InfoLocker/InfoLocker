@@ -1,21 +1,15 @@
 import * as React from 'react';
 import {useState} from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, Typography , Grid, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import  signUpHandler  from '../../firebase';
 import { deleteUser } from "firebase/auth";
-import app from '../../firebase';
-import firebase from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {  signOut ,createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
-import store from '../../store/store';
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
 import {loginSliceActions} from '../../store/loginSlice';
 import {useDispatch} from 'react-redux';
 import { postUserId } from '../../asyncFunctions';
 import { alertSliceActions } from '../../store/alertSlice';
-
 
 export default function LoginForm() {
 
@@ -58,17 +52,14 @@ const handleClick=async ()=>{
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user)
         if(user.emailVerified===false){
           setEmailError("enter valid email")
          const currUser = auth.currentUser;
 
 deleteUser(currUser).then(() => {
   // User deleted.
-  console.log("success")
 }).catch((error) => {
   // An error ocurred
-  console.log(error)
   // ...
 });
           return;
@@ -78,8 +69,6 @@ deleteUser(currUser).then(() => {
         // ...
       })
       .catch((error) => {
-          console.log(error)
-          // dispatch(alertSliceActions.fireTrue({flag:true,alertMessage:error.message}))
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
@@ -96,7 +85,6 @@ else {
 .then((userCredential) => {
   // Signed in 
   const user = userCredential.user;
-  console.log(user)
   if(user.emailVerified===false){
     setEmailError("enter valid email")
     return;
@@ -112,7 +100,6 @@ else {
   // ...
 })
 .catch((error) => {
-  console.log(error)
   const errorCode = error.code;
   const errorMessage = error.message;
   setEmailError(errorMessage.split("(")[1].split(")")[0])
@@ -133,7 +120,6 @@ signInWithPopup(auth, provider)
       setEmailError("enter valid email")
       return;
     }
-    console.log(user);
     postUserId(user.uid)
     // createUserData(user.uid)
     dispatch(loginSliceActions.login({id:user.uid}));

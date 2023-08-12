@@ -1,38 +1,17 @@
 import BackgroundWrapper from "./components/backgroundWrapper/BackgroundWrapper";
 import Login from "./components/logincomponent/Login";
-import LoginForm from "./components/logincomponent/LoginForm";
 import {BrowserRouter , Routes  , Route } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
-import { useSelector } from 'react-redux';
-import { ThemeProvider } from '@mui/material';
 import HomePage from "./components/homepage/HomePage";
 import DataForm from "./components/dataForm/DataForm";
-import { useEffect, useState } from "react";
-
-
-import {login} from './store/loginSlice';
 import ProtectedRoutes from './components/typeOfRoute/ProtectedRoutes';
-import Footer from "./components/footer/Footer";
 import AboutUs from "./components/AboutUs";
 import HowToUse from "./components/HowToUse";
 import TnC from "./TnC"
 import PrivacyPolicy from "./PrivacyPolicy";
 import PublicRoutes from "./components/typeOfRoute/PublicRoutes";
 import ContactUs from "./components/contactUs/ContactUs";
-// const customTheme = createTheme({
-
-
-//   typography: {
-//     fontFamily: 'Roboto', // Replace 'Your Desired Font' with your preferred font
-//   },
-// });
-
-
-
-
-
 
 
 function App() {
@@ -41,15 +20,8 @@ function App() {
   return (
 
 
-    <BrowserRouter>
-    {/* <ThemeProvider theme={customTheme}> */}
-
-    
+    <BrowserRouter> 
     <BackgroundWrapper variantt="blue">
-    
-
-
-
       
         <Routes>
         <Route  path="/" element={<PublicRoutes><LandingPage/></PublicRoutes>} />
@@ -68,16 +40,9 @@ function App() {
         <Route  path="/profile/tnc" element={<ProtectedRoutes><TnC/></ProtectedRoutes>} />
         <Route  path="/profile/privacy" element={<ProtectedRoutes><PrivacyPolicy/></ProtectedRoutes>} />
         <Route  path="/profile/contactus" element={<ProtectedRoutes><ContactUs/></ProtectedRoutes>} />
-        </Routes>
-     
-     
-
-  
-
-        
+        </Routes>     
       
       </BackgroundWrapper>
-    {/* </ThemeProvider> */}
     
     </BrowserRouter>
    

@@ -9,9 +9,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from "../assets/logo.svg"
 import { landingPageNavbarData, loginNavbarData } from '../utils/data';
@@ -30,9 +28,7 @@ React.useEffect(()=>{
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -92,14 +88,9 @@ React.useEffect(()=>{
                               <MenuItem  onClick={handleCloseNavMenu} >
                   <Typography textAlign="center">{isLoggedIn?"Log Out":"Log In"}</Typography>
                 </MenuItem>
-                        {/* <Box sx={{ flexGrow: 0 }}>
-            <Button onClick={handleClick} variant='outlined' sx={{color:'#9E465B',borderColor:'#9E465B',letterSpacing:2}}>
-              <Link style={{textDecoration:'none',color:'inherit'}} to='/login'>{isLoggedIn?"Log Out":"Log In"}</Link>
-            </Button>
-          </Box> */}
+
             </Menu>
           </Box>
-          {/* <img src={Logo} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} style={{height:"120px",width:"120px"}}/> */}
           <Box sx={{ flexGrow: 1, display:{xs:'none',md:'flex'},justifyContent:'center',fontFamily: 'Roboto' }}>
             {pages.map((page) => (
               <Button

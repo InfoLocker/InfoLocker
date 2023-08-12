@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import { Typography,Container,Button } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import Footer from './footer/Footer';
 function LandingPage() {
   const navigate=useNavigate()
@@ -25,7 +25,6 @@ function LandingPage() {
              Get Started
             </Button>
             </Container>
-        {/* <img src={background} style={{position:"absolute",right:-40,top:-80,height:"140vh"}} /> */}
         <Footer />
     </div>
   )

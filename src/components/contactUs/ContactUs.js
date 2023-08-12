@@ -19,15 +19,9 @@ export default function ContactUs() {
   const [emailError,setEmailError]=useState("")
   const [messageError , setMessageError] = useState("")
   const [isLoading,setIsLoading]=useState(false)
-const [signUpFlag , setSignUpFlag] = useState(false); 
-const navigate=useNavigate()
-// Access the data from the state object
-// const userId=useSelector((state)=>state.loginData[0].id)
 
-const userId=localStorage.getItem("userId")
 
 const receivedData = {label:"label" , value:"value"};
-console.log(receivedData)
 const [nameData , setNameData] = useState("");
 const [emailData , setEmailData] = useState("");
 const [messageData , setMessageData] = useState("")
@@ -59,8 +53,6 @@ const handleClick=async ()=>{
  
 }
 
-
-
   return (
     <div>
          <div style={{minHeight:"100vh"}}>
@@ -78,7 +70,6 @@ const handleClick=async ()=>{
       flexDirection:'column',
       backgroundColor:"white",
       padding:"30px 0",
-      // margin:'auto' , 
       textAlign:'center' ,
       zIndex:1 , 
      

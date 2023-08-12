@@ -12,7 +12,6 @@ const alertData=useSelector((state)=>state.alertData.data)
     if (reason === 'clickaway') {
       return;
     }
-    // setOpen(false)
     disaptch(alertSliceActions.fireFalse({flag:false,alertMessage:""}))
   };
 

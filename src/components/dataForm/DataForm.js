@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, Typography , Grid, Container } from '@mui/material';
 import Navbar from "../Navbar"
 import { postUserEnteredData, uploadFileData } from '../../asyncFunctions';
 import {useDispatch, useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import AlertComponent from '../alert/AlertComponent';
 import { alertSliceActions } from '../../store/alertSlice';
 import Loader from '../loader/Loader';
 import Footer from '../footer/Footer';
@@ -17,15 +15,11 @@ export default function DataForm() {
   const [labelError,setLabelError]=useState("")
   const [valueError,setValueError]=useState("")
   const [isLoading,setIsLoading]=useState(false)
-const [signUpFlag , setSignUpFlag] = useState(false); 
 const [file,setFile]=useState(null)
 const location = useLocation();
 const navigate=useNavigate()
-// Access the data from the state object
-// const userId=useSelector((state)=>state.loginData[0].id)
 const userId=localStorage.getItem("userId")
 const receivedData = location.state.data;
-console.log(receivedData)
 const [labelData , setLabelData] = useState(receivedData.label);
 const [valueData , setValueData] = useState(receivedData.value);
 const type = receivedData.type;
@@ -81,7 +75,6 @@ const handleClick=async ()=>{
       flexDirection:'column',
       backgroundColor:"white",
       padding:"30px 0",
-      // margin:'auto' , 
       textAlign:'center' ,
       zIndex:1 , 
      
@@ -129,7 +122,6 @@ const handleClick=async ()=>{
         onChange={(e)=>{setFile(e.target.files[0])}}
         variant="outlined"
         sx={{width:'100%' }}
-        // value = {valueData}
       />
     </Grid>
   </Grid>}

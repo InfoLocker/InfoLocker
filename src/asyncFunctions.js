@@ -1,4 +1,4 @@
-import { doc, setDoc, updateDoc, collection, addDoc, getDoc, getDocs, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, collection, addDoc, getDoc, getDocs, deleteDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { db } from "./firebase";
 
@@ -11,16 +11,13 @@ export const postUserId = async(uid) => {
 }
 
 const checkUserId = async(uid) => {
-    console.log(uid, "yesssssssssssssssssssssssssss")
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
         return true;
     } else {
         // docSnap.data() will be undefined in this case
-        console.log("No such document!");
         localStorage.clear();
         window.location.href = "/login"
         return false;
@@ -30,7 +27,6 @@ const checkUserId = async(uid) => {
 // send the dataform data
 export const postUserEnteredData = async(label, value, uid, type, docId, edit) => {
         const res = await checkUserId(uid)
-        console.log("res", res)
         if (res === false) {
             return;
         }
@@ -63,14 +59,12 @@ export const postUserEnteredData = async(label, value, uid, type, docId, edit) =
                 }
             }
         } catch (e) {
-            console.error("Error adding document: ", e);
         }
 
     }
     // delete user data
 export const deleteData = async(uid, type, docId, value) => {
     const res = await checkUserId(uid)
-    console.log("res", res)
     if (res === false) {
         return;
     }
@@ -87,16 +81,12 @@ export const deleteData = async(uid, type, docId, value) => {
             // Delete the file
             deleteObject(deleteRef).then(() => {
                 // File deleted successfully
-                console.log("deleted success")
             }).catch((error) => {
                 // Uh-oh, an error occurred!
-                console.log(error)
             });
 
         }
-        console.log("Document successfully deleted:", res);
     } catch (err) {
-        console.error("Error deleting the document:", err);
     }
 }
 
@@ -108,7 +98,6 @@ export const deleteData = async(uid, type, docId, value) => {
 
 export const getUserData = async(uid) => {
     const res = await checkUserId(uid)
-    console.log("res", res)
     if (res === false) {
         return;
     }
@@ -120,9 +109,6 @@ export const getUserData = async(uid) => {
     let detailsCollection = []
     let linksCollection = []
     let filesCollection = []
-    console.log(docSnap.exists(),"thissssssssss")
-    // if (docSnap.exists()) {
-        //   console.log("Document data:", docSnap.data());
         detailsCollectionSnap.forEach(doc => {
             detailsCollection.push({...doc.data(), docId: doc.id })
         })
@@ -133,12 +119,6 @@ export const getUserData = async(uid) => {
             filesCollection.push({...doc.data(), docId: doc.id })
         })
 
-    // } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
-        // console.log("got the data")
-        // window.location.href="/login"
-    // }
     return {
         details: detailsCollection,
         links: linksCollection,
@@ -150,7 +130,6 @@ export const getUserData = async(uid) => {
 
 export const uploadFileData = async(uid, type, docId, edit, file, label) => {
     const res = await checkUserId(uid)
-    console.log("res", res)
     if (res === false) {
         return;
     }
@@ -164,37 +143,14 @@ export const uploadFileData = async(uid, type, docId, edit, file, label) => {
     // const uploadTask = uploadBytesResumable(fileRef, file);
 
     await uploadBytes(fileRef, file).then((snapshot) => {
-        console.log(snapshot)
-        console.log('Uploaded a blob or file!');
     })
     getDownloadURL(fileRef)
         .then((url) => {
-            console.log(url)
             postUserEnteredData(label, { fileName: file.name, url: url }, uid, type, docId, edit)
-
-
-
-            // `url` is the download URL for 'images/stars.jpg'
-
-            // // This can be downloaded directly:
-            // const xhr = new XMLHttpRequest();
-            // xhr.responseType = 'blob';
-            // xhr.onload = (event) => {
-            //   const blob = xhr.response;
-            // };
-            // xhr.open('GET', url);
-            // xhr.send();
-
-            // // Or inserted into an <img> element
-            // const img = document.getElementById('myimg');
-            // img.setAttribute('src', url);
         })
         .catch((error) => {
-            // Handle any errors
         });
 }
-
-
 //Post Message
 export const postMessage = async(nameData, emailData, messageData) => {
     const docRef = await addDoc(collection(db, "message"), {

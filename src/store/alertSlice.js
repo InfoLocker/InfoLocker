@@ -1,4 +1,4 @@
-import { createSlice,current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 const data = {
     data:{
         flag:false,
@@ -11,16 +11,13 @@ const alertSlice = createSlice({
     reducers: {
         fireTrue: (state, action) => {
              state.data=action.payload
-             console.log("current state:- ",current(state))
         },
         fireFalse: (state, action) => {
             state.data=action.payload
-            console.log("current state:- ",current(state))
         }
     }
 });
-// export default loginSlice.reducer;
-// export const { login, logout } = loginSlice.actions;
+
 
 
 export const alertSliceActions = alertSlice.actions;

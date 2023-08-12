@@ -29,11 +29,6 @@ function Footer() {
               Terms And Conditions
               </Link>
               </Typography>
-              {/* <Typography sx={{marginBottom:"10px"}}>
-              <Link to={userId?"/profile/howtouse":"/howtouse"} style={{textDecoration:'none ',color:"inherit"}}>
-              How To Use
-              </Link>
-              </Typography> */}
               <Typography sx={{marginBottom:"10px"}}>
               <Link to={userId?"/profile/privacy":"/privacy"} style={{textDecoration:'none',color:"inherit"}}>
               Privacy Policy
