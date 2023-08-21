@@ -19,10 +19,12 @@ const [filesData,setFilesData]=useState([])
   const userId=localStorage.getItem("userId")
 
   const getData=async()=>{
+    setIsLoading(true)
     const resultObject= await getUserData(userId);
     setLinksData(resultObject.links)
     setDetailsData(resultObject.details)
     setFilesData(resultObject.files)
+    setIsLoading(false)
   }
    const handleDelete=async (uid,type,docId,value)=>{
      deleteData(uid,type,docId,value);
@@ -30,23 +32,21 @@ const [filesData,setFilesData]=useState([])
      getData();
    }
   useEffect( ()=>{
-    setIsLoading(true)
  getData()
- setIsLoading(false)
   },[])
   return (
     <div>
-      {isLoading?<Loader />:
-    <div style={{minHeight:"100vh"}}>
+      {isLoading &&<div style={{height:"85vh"}}><Loader /></div>}
+    {!isLoading && <div style={{minHeight:"100vh"}}>
         <Navbar isLoggedIn={true}/>
         <div style={{padding:"30px",display:"flex",justifyContent:"center"}} >
         <Box sx={{background:'none',width:{sx:"100%",md:"60%"},boxShadow:"1px 2px 8px rgba(0,0,0,0.4)",padding:4,backgroundColor:"#ffffff",borderRadius:"8px"}}>
           <Grid>
             <Header type="details"/>
             <Grid container spacing={2} sx={{marginTop:3}}>
-              {detailsData.length>0 ?detailsData.map((dataa)=>{
+              {detailsData.length>0 ?detailsData.map((dataa,index)=>{
                     return(
-                    <DataComponent label={dataa.label} value={dataa.value} type="details" docId={dataa.docId} handleDelete={handleDelete}/>
+                    <DataComponent key={index} label={dataa.label} value={dataa.value} type="details" docId={dataa.docId} handleDelete={handleDelete}/>
                    ); }
               ):<div>No Details at the moment</div>}
             </Grid>
@@ -54,9 +54,9 @@ const [filesData,setFilesData]=useState([])
           <Grid sx={{marginTop:5,marginBottom:5}}>
           <Header type="links" />
           <Grid container spacing={2} sx={{marginTop:3}}>
-          {linksData.length>0 ? linksData.map((dataa)=>{
+          {linksData.length>0 ? linksData.map((dataa,index)=>{
                     return(
-                    <DataComponent  label={dataa.label} handleDelete={handleDelete} value={dataa.value} type="links" docId={dataa.docId} />
+                    <DataComponent key={index}  label={dataa.label} handleDelete={handleDelete} value={dataa.value} type="links" docId={dataa.docId} />
                    ); }
               ):<div>No links at the moment</div>}
             </Grid>
@@ -64,9 +64,9 @@ const [filesData,setFilesData]=useState([])
           <Grid>
           <Header type="files" />
           <Grid container spacing={2} sx={{marginTop:3}}>
-          {filesData.length>0 ? filesData.map((dataa)=>{
+          {filesData.length>0 ? filesData.map((dataa,index)=>{
                     return(
-                    <DataComponent label={dataa.label} handleDelete={handleDelete} value={dataa.value} url={dataa.url} type="files" docId={dataa.docId} />
+                    <DataComponent key={index} label={dataa.label} handleDelete={handleDelete} value={dataa.value} url={dataa.url} type="files" docId={dataa.docId} />
                    ); }
               ):<div>No Files at the moment</div>}
             </Grid>

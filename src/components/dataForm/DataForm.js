@@ -50,10 +50,14 @@ const handleClick=async ()=>{
   const messageString=edit?"Edited":"Added";
   dispatch(alertSliceActions.fireTrue({flag:true,alertMessage:` ${type.substring(0,type.length-1).toUpperCase()} ${messageString} Successfully`}));
   setIsLoading(true)
-  setTimeout(()=>{
-    setIsLoading(false)
+  if(type==="files"){
+    setTimeout(()=>{
     navigate("/profile")
-  },3000)
+    setIsLoading(false)
+    },3000)
+  }else{
+    navigate("/profile")
+  }
 
 
 }

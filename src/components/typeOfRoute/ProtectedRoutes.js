@@ -8,7 +8,7 @@ function ProtectedRoutes(props) {
     if ( userId) {
             return props.children;
     } else {
-        return <Navigate to = "/login" / >
+        return <Navigate to = "/login"  />
     }
 
 }

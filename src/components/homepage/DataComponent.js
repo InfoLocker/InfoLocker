@@ -40,7 +40,7 @@ readOnly:true,
 endAdornment: (
     <div style={{display:"flex"}}>
 <IconButton sx={{color:"#0F172A"}} onClick={handleEditClick}>
-    <EditIcon docId={docId} />
+    <EditIcon  />
 </IconButton>
 <IconButton sx={{color:"#0F172A"}} onClick={handleDeleteClick}>
     <DeleteIcon />

@@ -2,13 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDgJPzoiwP570lL7s_fJtKq3Hm6G6nx3jA",
-  authDomain: "infolocker-2824b.firebaseapp.com",
-  projectId: "infolocker-2824b",
-  storageBucket: "infolocker-2824b.appspot.com",
-  messagingSenderId: "135525225855",
-  appId: "1:135525225855:web:76dcb9b91ba987853db64a"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 // Initialize Firebase
