@@ -12,10 +12,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from "../assets/logo.svg"
+import { useNavigate } from 'react-router-dom';
 import { landingPageNavbarData, loginNavbarData } from '../utils/data';
 
 
 function Navbar() {
+  const navigate=useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [pages,setPages]=useState([]);
@@ -86,7 +88,10 @@ React.useEffect(()=>{
                 </MenuItem>
               ))}
                               <MenuItem  onClick={handleCloseNavMenu} >
-                  <Typography textAlign="center">{isLoggedIn?"Log Out":"Log In"}</Typography>
+                  <Typography onClick={()=>{
+                    localStorage.clear()
+                    navigate("/login")
+                  }} textAlign="center">{isLoggedIn?"Log Out":"Log In"}</Typography>
                 </MenuItem>
 
             </Menu>
